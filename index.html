@@ -1,0 +1,156 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+ 
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+ 
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<crowd-form answer-format="flatten-objects" id="crowd-form">
+
+<div style="margin-bottom: 20px;">
+    <h3><b style="font-family:verdana ">您的任務是選擇比較好的英文翻譯繁體中文的翻譯
+        <br>在下方範例中，黑色框是原文問題及回答，而黃色框內有兩個關於此問題與回答的翻譯，請根據翻譯結果是否 正確、流暢、符合台灣人用語習慣、保持題意 來給予評分
+        <br>0分(拉桿最左邊)代表完全曲解原問題及解答，6分(拉桿最右邊)代表翻譯正確通順、保持題意。</h3>
+    
+    <p>如對上述介紹仍有問題，請確認已經詳細閱讀以下文件</p>
+    <ul>
+        <li><a href="https://www.pro360.com.tw/blog/pro_tips_of_english_translation_1/" target="_blank">網站1</a></li>
+        <li><a href="https://www.thenewslens.com/article/124796" target="_blank">網站2</a></li>
+    </ul>
+    <p><b style="font-family:verdana; color:red">請注意，"出現不必要的簡體中文"也是考量點之一。</b></p>
+</div>
+
+
+
+<!-- example question 1 Query_Punctuation -->
+<h2>範例題1.</h2>
+<div style="width:90%; border: 2px solid grey; padding: 10px;">
+    <p><u><b style="font-family:verdana; color:blue; font-size:13px">Question:</b></u> A: I believe we can come up with a solution that benefits both of us. </p>
+    <p><u><b style="font-family:verdana; color:green; font-size:13px">Response:</b></u> B: Agreed, let's work towards a "win-win" situation. </p>
+</div>
+<p></p>
+ 
+<div style="width:90%; border: 2px solid orange; padding: 10px;">
+    <p><u><b style="font-family:verdana; color:orange; font-size:13px">請評分以下翻譯 </b></u></p>
+
+<!-- Slider container to control the width -->
+    <div class="slider-container">
+
+        <div>
+            <p><strong>0 :</strong><br> 
+                <p><u><b style="font-family:verdana; color:blue">問題:</b></u> A: 我相信我們可以找到一個對我們雙方都有利的解決方案。</p>
+                <p><u><b style="font-family:verdana; color:green">回答:</b></u> B: 同意，讓我們朝著 "雙贏" 的局面努力吧。</p>
+                <crowd-slider name="Translation 0" header="Translation 0 Quality" min="0" max="6" step="1" pin show-ticks left-label="Not at all" right-label="Perfectly" value="5"></crowd-slider>
+                <p><u><b style="font-family:verdana; color:red">解釋:</b></u> 整體翻譯沒有問題，但回答中的 "雙贏" 仍然使用著英文文法的引號，而非中文文法的引號，故打低分</p>
+        </div>
+        <div>
+            <p><strong>1 :</strong><br> 
+                <p><u><b style="font-family:verdana; color:blue">問題:</b></u> A: 我相信我們可以找到一個對我們雙方都有利的解決方案。</p>
+                <p><u><b style="font-family:verdana; color:green">回答:</b></u> B: 同意，讓我們朝著「雙贏」的局面努力吧。</p>
+                <crowd-slider name="Translation 0" header="Translation 0 Quality" min="0" max="6" step="1" pin show-ticks left-label="Not at all" right-label="Perfectly" value="6"></crowd-slider>
+                <p><u><b style="font-family:verdana; color:red">解釋:</b></u> 回答中的「雙贏」有使用正確中文文法的引號，故打高分。</p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- example question 2 Query_AppropriatelyKeep -->
+<h2>範例題2.</h2>
+<div style="width:90%; border: 2px solid grey; padding: 10px;">
+    <p><u><b style="font-family:verdana; color:blue; font-size:13px">Question:</b></u> Translate apple into French </p>
+    <p><u><b style="font-family:verdana; color:green; font-size:13px">Response:</b></u> pomme </p>
+</div>
+<p></p>
+ 
+<div style="width:90%; border: 2px solid orange; padding: 10px;">
+    <p><u><b style="font-family:verdana; color:orange; font-size:13px">請評分以下翻譯 </b></u></p>
+
+<!-- Slider container to control the width -->
+    <div class="slider-container">
+
+        <div>
+            <p><strong>0 :</strong><br> 
+                <p><u><b style="font-family:verdana; color:blue">問題:</b></u> 將蘋果翻譯成法文</p>
+                <p><u><b style="font-family:verdana; color:green">回答:</b></u> 蘋果</p>
+                <crowd-slider name="Translation 0" header="Translation 0 Quality" min="0" max="6" step="1" pin show-ticks left-label="Not at all" right-label="Perfectly" value="1"></crowd-slider>
+                <p><u><b style="font-family:verdana; color:red">解釋:</b></u> 原本的問題(Translate apple into French)期望是將apple這個詞翻譯成法文，然而在翻譯此題目時直接將apple一起順勢翻譯成蘋果(中文)，再者答案也順勢將pomme(蘋果的法文)翻譯成中文，顯然曲解了原問題的意思，故打低分。</p>
+        </div>
+        <div>
+            <p><strong>1 :</strong><br> 
+                <p><u><b style="font-family:verdana; color:blue">問題:</b></u> 將"apple"翻譯成法文</p>
+                <p><u><b style="font-family:verdana; color:green">回答:</b></u> pomme</p>
+                <p><u><b style="font-family:verdana; color:red">解釋:</b></u> 此回答與原本的問題(Translate apple into French)期望相同，故打高分。
+                    <br>註1:「將蘋果翻譯成法文; pomme」也是可以接受的翻譯
+                    <br>註2:使用英文引號強調英文單字apple可以接受，但如果將apple翻譯成蘋果後以英文引號標註，則稍嫌不正確: ❌將"蘋果"翻譯成法文
+                </p>
+                <crowd-slider name="Translation 0" header="Translation 0 Quality" min="0" max="6" step="1" pin show-ticks left-label="Not at all" right-label="Perfectly" value="6"></crowd-slider>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- example question 3 Query_WordMeaning -->
+<h2>範例題3.</h2>
+<div style="width:90%; border: 2px solid grey; padding: 10px;">
+    <p><u><b style="font-family:verdana; color:blue; font-size:13px">Question:</b></u> A: Will you wear a mask when we meet later? </p>
+    <p><u><b style="font-family:verdana; color:green; font-size:13px">Response:</b></u> B : Come on, it’s been so long since COVID-19. </p>
+</div>
+<p></p>
+ 
+<div style="width:90%; border: 2px solid orange; padding: 10px;">
+    <p><u><b style="font-family:verdana; color:orange; font-size:13px">請評分以下翻譯 </b></u></p>
+
+<!-- Slider container to control the width -->
+    <div class="slider-container">
+
+        <div>
+            <p><strong>0 :</strong><br> 
+                <p><u><b style="font-family:verdana; color:blue">問題:</b></u> A: 我們晚點見面時，你會帶口罩嗎？</p>
+                <p><u><b style="font-family:verdana; color:green">回答:</b></u> B: 拜託，新冠肺炎已經過這麼久了。</p>
+                <crowd-slider name="Translation 0" header="Translation 0 Quality" min="0" max="6" step="1" pin show-ticks left-label="Not at all" right-label="Perfectly" value="2"></crowd-slider>
+                <p><u><b style="font-family:verdana; color:red">解釋:</b></u> 問題中帶口罩的帶應該翻譯為戴，屬於錯字，故打低分。</p>
+        </div>
+        <div>
+            <p><strong>1 :</strong><br> 
+                <p><u><b style="font-family:verdana; color:blue">問題:</b></u> A: 我們晚點見面時，你會戴口罩嗎？</p>
+                <p><u><b style="font-family:verdana; color:green">回答:</b></u> B: 拜託，新冠肺炎已經過這麼久了。</p>
+                <crowd-slider name="Translation 0" header="Translation 0 Quality" min="0" max="6" step="1" pin show-ticks left-label="Not at all" right-label="Perfectly" value="6"></crowd-slider>
+                <p><u><b style="font-family:verdana; color:red">解釋:</b></u> 問題中戴口罩的戴正確，故打高分。</p>
+        </div>
+    </div>
+</div>
+
+<p></p>
+</crowd-form>
+ 
+
+
+
+<!-- CSS file -->
+<style>
+    /* Style to ensure the slider ticks are shown and to triple the length of the slider */
+    .slider-container crowd-slider {
+        width: 80%; /* Triple the width */
+    }
+    /* New styles to always show the ticks and labels */
+    .slider-container crowd-slider::part(tick-mark) {
+        display: block; /* Ensure tick marks are always shown */
+    }
+    .slider-container crowd-slider::part(tick-mark-label) {
+        display: block; /* Ensure tick mark labels are always shown */
+    }
+    /* Style to make the slider thumb larger */
+    .slider-container crowd-slider::part(thumb) {
+        height: 24px; /* Increase the height of the thumb */
+        width: 24px; /* Increase the width of the thumb */
+        background-color: blue; /* Change the thumb color to blue (optional) */
+        border-radius: 50%; /* Make the thumb circular */
+    }
+    /* Optional: Increase the height of the slider track for better visibility */
+    .slider-container crowd-slider::part(track) {
+        height: 8px; /* Increase the track height */
+    }
+</style>
+
